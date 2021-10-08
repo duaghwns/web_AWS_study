@@ -8,8 +8,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.is;
 
 
 @RunWith(SpringRunner.class)
@@ -26,5 +26,18 @@ public class GreetingControllerTest {
         mvc.perform(get("/greeting"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(greeting));
+    }
+
+    @Test
+    public void greetingDto가_리턴된다() throws Exception {
+        String name = "hojoon";
+        int amount = 1000;
+
+        mvc.perform(get("/greeting/dto")
+                .param("name",name)
+                .param("amount", String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
