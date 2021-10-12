@@ -1,5 +1,6 @@
 package hojoon.web_AWS_study.domain.posts;
 
+import javafx.geometry.Pos;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,11 @@ public class PostsRepositoryTest {
 
     @Autowired
     PostsRepository postsRepository;
+//    private PostsRepository postsRepository;
+//
+//    public PostsRepositoryTest(PostsRepository postsRepository){
+//        this.postsRepository = postsRepository;
+//    }
 
     @After
     public void cleanup() {
