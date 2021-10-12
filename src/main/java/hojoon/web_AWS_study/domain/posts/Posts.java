@@ -1,6 +1,7 @@
 package hojoon.web_AWS_study.domain.posts;
 
 import lombok.Builder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
