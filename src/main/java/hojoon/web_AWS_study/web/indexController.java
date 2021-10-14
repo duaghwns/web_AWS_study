@@ -1,6 +1,8 @@
 package hojoon.web_AWS_study.web;
 
 import hojoon.web_AWS_study.domain.service.posts.PostsService;
+import org.hibernate.service.spi.InjectService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class indexController {
 
-    private final PostsService postsService;
+    private PostsService postsService;
 
     @GetMapping("/")
     public String index(Model model) {
