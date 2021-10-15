@@ -1,5 +1,6 @@
 package hojoon.web_AWS_study.domain.User;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.type.BasicTypeRegistry;
@@ -23,5 +24,19 @@ public class User extends BasicTypeRegistry {
     @Column
     private String picture;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
+
+    @Builder
+    public User(String name, String email, String picture, Role role){
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.role = role;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
+    }
 }
