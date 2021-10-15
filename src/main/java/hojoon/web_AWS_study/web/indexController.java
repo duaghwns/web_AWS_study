@@ -35,10 +35,4 @@ public class indexController {
         model.addAttribute("post",dto);
         return "posts-update";
     }
-
-    @DeleteMapping("posts/delete/{id}")
-    public Long postsDelete(@PathVariable Long id) {
-        postsService.delete(id);
-        return id;
-    }
 }
