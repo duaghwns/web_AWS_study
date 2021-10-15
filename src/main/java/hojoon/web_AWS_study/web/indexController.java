@@ -1,5 +1,6 @@
 package hojoon.web_AWS_study.web;
 
+import hojoon.web_AWS_study.domain.posts.Posts;
 import hojoon.web_AWS_study.domain.service.posts.PostsService;
 import hojoon.web_AWS_study.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -32,5 +34,11 @@ public class indexController {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post",dto);
         return "posts-update";
+    }
+
+    @DeleteMapping("posts/delete/{id}")
+    public Long postsDelete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
     }
 }
