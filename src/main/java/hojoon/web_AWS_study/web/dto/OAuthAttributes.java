@@ -29,7 +29,11 @@ public class OAuthAttributes {
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String,Object> attributes){
         return OAuthAttributes.builder()
                 .name((String) attributes.get("name"))
-                .email
+                .email((String) attributes.get("email"))
+                .picture((String) attributes.get("picture"))
+                .attributes(attributes)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
 // 작업해야됌 page.186
 
 
