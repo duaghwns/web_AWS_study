@@ -1,5 +1,6 @@
 package hojoon.web_AWS_study.config.auth;
 
+import hojoon.web_AWS_study.config.auth.dto.SessionUser;
 import hojoon.web_AWS_study.domain.User.User;
 import hojoon.web_AWS_study.domain.User.UserRepository;
 import hojoon.web_AWS_study.web.dto.OAuthAttributes;
@@ -48,7 +49,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     }
 
     private User saveOrUpdate(OAuthAttributes attributes) {
-        User user = userRepository.findByEmail(attributes.getEmail()).map(entity -> entity.update(attributes.getName(), attributes.getPicture())).orElse(attributes.toEntity());
+        User user = userRepository.findByEmail(attributes.getEmail())
+                                  .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
+                                  .orElse(attributes.toEntity());
 
         return userRepository.save(user);
     }

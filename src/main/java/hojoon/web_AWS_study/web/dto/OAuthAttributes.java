@@ -1,5 +1,7 @@
 package hojoon.web_AWS_study.web.dto;
 
+import hojoon.web_AWS_study.domain.User.Role;
+import hojoon.web_AWS_study.domain.User.User;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -34,13 +36,14 @@ public class OAuthAttributes {
                 .attributes(attributes)
                 .nameAttributeKey(userNameAttributeName)
                 .build();
-// 작업해야됌 page.186
-
-
-
-
-
     }
 
-
+    public User toEntity() {
+        return User.builder()
+                .name(name)
+                .email(email)
+                .picture(picture)
+                .role(Role.GUEST)
+                .build();
+    }
 }
