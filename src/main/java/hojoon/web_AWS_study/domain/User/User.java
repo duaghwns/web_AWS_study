@@ -1,16 +1,16 @@
 package hojoon.web_AWS_study.domain.User;
 
+import hojoon.web_AWS_study.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.type.BasicTypeRegistry;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class User extends BasicTypeRegistry {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

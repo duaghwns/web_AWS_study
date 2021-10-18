@@ -2,27 +2,29 @@ package hojoon.web_AWS_study.config.auth;
 
 import hojoon.web_AWS_study.domain.User.Role;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.servlet.WebSecurityEnablerConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityEnablerConfiguration {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     private final CustomOAuth2UserService customOAuth2UserService;
 
-    protected void configure(HttpSecurity http) throws Exception{
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                    .headers().frameOptions().disable()
+                .headers().frameOptions().disable()
                 .and()
-                    .authorizeRequests().antMatchers("/","/css/**","/images/**","/js/**","/h2-console/**")
-                    .permitAll().antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                    .authorizeRequests()
+                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
+                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                     .anyRequest().authenticated()
                 .and()
                     .logout()
-                        .logoutSuccessUrl("/")
+                    .logoutSuccessUrl("/")
                 .and()
                     .oauth2Login()
                         .userInfoEndpoint()
