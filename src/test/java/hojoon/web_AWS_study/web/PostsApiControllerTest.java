@@ -52,6 +52,7 @@ public class PostsApiControllerTest {
     public void setup() {
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
+
                 .apply(springSecurity())
                 .build();
     }
